@@ -41,6 +41,11 @@ type TeamStore = {
   removePokemon: (
     playerPokemonId: string
   ) => void
+
+  reorderTeam: (
+    oldIndex: number,
+    newIndex: number
+  ) => void
 }
 
 export const useTeamStore =
@@ -205,6 +210,45 @@ export const useTeamStore =
                         slot.playerPokemonId !==
                         playerPokemonId
                     ),
+                }
+              }
+            ),
+          })),
+
+        reorderTeam: (
+          oldIndex,
+          newIndex
+        ) =>
+          set((state) => ({
+            teams: state.teams.map(
+              (team) => {
+                if (
+                  team.id !==
+                  state.activeTeamId
+                ) {
+                  return team
+                }
+
+                const updatedSlots =
+                  [...team.pokemonSlots]
+
+                const [movedPokemon] =
+                  updatedSlots.splice(
+                    oldIndex,
+                    1
+                  )
+
+                updatedSlots.splice(
+                  newIndex,
+                  0,
+                  movedPokemon
+                )
+
+                return {
+                  ...team,
+
+                  pokemonSlots:
+                    updatedSlots,
                 }
               }
             ),

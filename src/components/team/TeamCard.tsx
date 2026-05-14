@@ -1,7 +1,13 @@
 import {
   DndContext,
   closestCenter,
+  type DragEndEvent,
 } from "@dnd-kit/core"
+
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable"
 
 import { useTeamStore }
   from "../../store/team-store"
@@ -18,6 +24,7 @@ export default function TeamCard() {
     teams,
     activeTeamId,
     removePokemon,
+    reorderTeam,
   } = useTeamStore()
 
   const activeTeam =
@@ -36,8 +43,43 @@ export default function TeamCard() {
       activeTeam
     )
 
-  function handleDragEnd() {
-    // drag reorder virá depois
+  function handleDragEnd(
+    event: DragEndEvent
+  ) {
+    const {
+      active,
+      over,
+    } = event
+
+    if (!over) {
+      return
+    }
+
+    if (
+      active.id ===
+      over.id
+    ) {
+      return
+    }
+
+    const oldIndex =
+      teamMembers.findIndex(
+        (pokemon) =>
+          pokemon.id ===
+          active.id
+      )
+
+    const newIndex =
+      teamMembers.findIndex(
+        (pokemon) =>
+          pokemon.id ===
+          over.id
+      )
+
+    reorderTeam(
+      oldIndex,
+      newIndex
+    )
   }
 
   return (
@@ -80,51 +122,63 @@ export default function TeamCard() {
         onDragEnd={handleDragEnd}
       >
 
-        <div className="space-y-5">
+        <SortableContext
+          items={teamMembers.map(
+            (pokemon) =>
+              pokemon.id
+          )}
+          strategy={
+            verticalListSortingStrategy
+          }
+        >
 
-          {teamMembers.map(
-            (pokemon) => (
-              <div
-                key={pokemon.id}
-                className="
-                  flex
-                  items-center
-                  gap-4
-                "
-              >
+          <div className="space-y-5">
 
-                <div className="flex-1">
-
-                  <TeamPokemonCard
-                    pokemon={pokemon}
-                  />
-
-                </div>
-
-                <button
-                  onClick={() =>
-                    removePokemon(
-                      pokemon.id
-                    )
-                  }
+            {teamMembers.map(
+              (pokemon) => (
+                <div
+                  key={pokemon.id}
                   className="
-                    bg-red-500
-                    hover:bg-red-400
-                    transition-all
-                    px-4
-                    py-3
-                    rounded-2xl
-                    font-bold
+                    flex
+                    items-center
+                    gap-4
                   "
                 >
-                  Remove
-                </button>
 
-              </div>
-            )
-          )}
+                  <div className="flex-1">
 
-        </div>
+                    <TeamPokemonCard
+                      pokemon={pokemon}
+                    />
+
+                  </div>
+
+                  <button
+                    onClick={() =>
+                      removePokemon(
+                        pokemon.id
+                      )
+                    }
+                    className="
+                      bg-red-500
+                      hover:bg-red-400
+                      transition-all
+                      px-4
+                      py-3
+                      rounded-2xl
+                      font-bold
+                    "
+                  >
+                    Remove
+                  </button>
+
+                </div>
+              )
+            )}
+
+          </div>
+
+        </SortableContext>
 
       </DndContext>
 
