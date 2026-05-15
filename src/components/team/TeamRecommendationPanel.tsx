@@ -9,6 +9,9 @@ import {
   generateRecommendations,
 } from "../../utils/team-recommendations"
 
+import WidgetContainer
+  from "../ui/WidgetContainer"
+
 export default function TeamRecommendationPanel() {
   const {
     teams,
@@ -37,39 +40,11 @@ export default function TeamRecommendationPanel() {
     )
 
   return (
-    <section
-      className="
-        bg-zinc-900
-        border
-        border-zinc-800
-        rounded-3xl
-        p-6
-      "
+    <WidgetContainer
+      title="Recommendations"
+      category="AI Assistant"
+      accent="emerald"
     >
-      <header className="mb-6">
-
-        <p
-          className="
-            uppercase
-            tracking-[0.3em]
-            text-emerald-400
-            text-sm
-            mb-2
-          "
-        >
-          AI Assistant
-        </p>
-
-        <h2
-          className="
-            text-3xl
-            font-black
-          "
-        >
-          Recommendations
-        </h2>
-
-      </header>
 
       <div
         className="
@@ -123,6 +98,6 @@ export default function TeamRecommendationPanel() {
 
       </div>
 
-    </section>
+    </WidgetContainer>
   )
 }

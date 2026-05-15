@@ -12,6 +12,9 @@ import {
 import TypeBadge
   from "../ui/TypeBadge"
 
+import WidgetContainer
+  from "../ui/WidgetContainer"
+
 export default function TeamWeaknessPanel() {
   const {
     teams,
@@ -44,39 +47,11 @@ export default function TeamWeaknessPanel() {
       .sort((a, b) => b[1] - a[1])
 
   return (
-    <section
-      className="
-        bg-zinc-900
-        border
-        border-zinc-800
-        rounded-3xl
-        p-6
-      "
+    <WidgetContainer
+      title="Weakness Coverage"
+      category="Team Analysis"
+      accent="red"
     >
-      <header className="mb-6">
-
-        <p
-          className="
-            uppercase
-            tracking-[0.3em]
-            text-red-400
-            text-sm
-            mb-2
-          "
-        >
-          Team Analysis
-        </p>
-
-        <h2
-          className="
-            text-3xl
-            font-black
-          "
-        >
-          Weakness Coverage
-        </h2>
-
-      </header>
 
       <div
         className="
@@ -126,6 +101,6 @@ export default function TeamWeaknessPanel() {
 
       </div>
 
-    </section>
+    </WidgetContainer>
   )
 }

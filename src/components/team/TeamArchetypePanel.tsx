@@ -9,6 +9,9 @@ import {
   analyzeArchetype,
 } from "../../utils/team-archetype-analysis"
 
+import WidgetContainer
+  from "../ui/WidgetContainer"
+
 export default function TeamArchetypePanel() {
   const {
     teams,
@@ -37,39 +40,11 @@ export default function TeamArchetypePanel() {
     )
 
   return (
-    <section
-      className="
-        bg-zinc-900
-        border
-        border-zinc-800
-        rounded-3xl
-        p-6
-      "
+    <WidgetContainer
+      title="Archetype"
+      category="Team Identity"
+      accent="cyan"
     >
-      <header className="mb-6">
-
-        <p
-          className="
-            uppercase
-            tracking-[0.3em]
-            text-cyan-400
-            text-sm
-            mb-2
-          "
-        >
-          Team Identity
-        </p>
-
-        <h2
-          className="
-            text-3xl
-            font-black
-          "
-        >
-          Archetype
-        </h2>
-
-      </header>
 
       <div
         className="
@@ -80,6 +55,7 @@ export default function TeamArchetypePanel() {
           p-6
         "
       >
+
         <h3
           className="
             text-4xl
@@ -104,6 +80,6 @@ export default function TeamArchetypePanel() {
 
       </div>
 
-    </section>
+    </WidgetContainer>
   )
 }

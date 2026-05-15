@@ -13,6 +13,9 @@ import {
   resolveTeamPokemon,
 } from "../../utils/resolve-team-pokemon"
 
+import WidgetContainer
+  from "../ui/WidgetContainer"
+
 export default function TeamRadarChart() {
   const {
     teams,
@@ -138,40 +141,11 @@ export default function TeamRadarChart() {
   ]
 
   return (
-    <section
-      className="
-        bg-zinc-900
-        border
-        border-zinc-800
-        rounded-3xl
-        p-6
-      "
+    <WidgetContainer
+      title="Team Radar"
+      category="Team Analytics"
+      accent="cyan"
     >
-
-      <header className="mb-6">
-
-        <p
-          className="
-            uppercase
-            tracking-[0.3em]
-            text-cyan-400
-            text-sm
-            mb-2
-          "
-        >
-          Team Analytics
-        </p>
-
-        <h2
-          className="
-            text-2xl
-            font-black
-          "
-        >
-          Team Radar
-        </h2>
-
-      </header>
 
       <div className="h-72">
 
@@ -208,6 +182,6 @@ export default function TeamRadarChart() {
 
       </div>
 
-    </section>
+    </WidgetContainer>
   )
 }

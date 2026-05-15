@@ -6,10 +6,13 @@ import {
 } from "../../utils/resolve-team-pokemon"
 
 import {
-  analyzeSpeedControl,
-} from "../../utils/team-speed-analysis"
+  analyzeHazards,
+} from "../../utils/team-hazard-analysis"
 
-export default function TeamSpeedPanel() {
+import WidgetContainer
+  from "../ui/WidgetContainer"
+
+export default function TeamHazardPanel() {
   const {
     teams,
     activeTeamId,
@@ -31,55 +34,27 @@ export default function TeamSpeedPanel() {
       activeTeam
     )
 
-  const speedControl =
-    analyzeSpeedControl(
+  const hazards =
+    analyzeHazards(
       resolvedTeam
     )
 
-  const sortedSpeedControl =
-    Object.entries(speedControl)
+  const sortedHazards =
+    Object.entries(hazards)
 
   return (
-    <section
-      className="
-        bg-zinc-900
-        border
-        border-zinc-800
-        rounded-3xl
-        p-6
-      "
+    <WidgetContainer
+      title="Hazard Control"
+      category="Field Control"
+      accent="red"
     >
-      <header className="mb-6">
-
-        <p
-          className="
-            uppercase
-            tracking-[0.3em]
-            text-green-400
-            text-sm
-            mb-2
-          "
-        >
-          Speed Analysis
-        </p>
-
-        <h2
-          className="
-            text-3xl
-            font-black
-          "
-        >
-          Speed Control
-        </h2>
-
-      </header>
 
       <div className="space-y-4">
 
-        {sortedSpeedControl.map(
-          ([speed, count]) => (
+        {sortedHazards.map(
+          ([hazard, count]) => (
             <div
-              key={speed}
+              key={hazard}
               className="
                 flex
                 items-center
@@ -98,24 +73,25 @@ export default function TeamSpeedPanel() {
                   font-semibold
                 "
               >
-                {speed}
+                {hazard}
               </span>
 
               <span
                 className="
-                  text-green-400
+                  text-red-400
                   font-bold
                   text-xl
                 "
               >
                 {count}
               </span>
+
             </div>
           )
         )}
 
       </div>
 
-    </section>
+    </WidgetContainer>
   )
 }

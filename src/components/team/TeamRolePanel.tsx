@@ -9,6 +9,9 @@ import {
   analyzeRoles,
 } from "../../utils/team-role-analysis"
 
+import WidgetContainer
+  from "../ui/WidgetContainer"
+
 export default function TeamRolePanel() {
   const {
     teams,
@@ -40,39 +43,11 @@ export default function TeamRolePanel() {
     Object.entries(roles)
 
   return (
-    <section
-      className="
-        bg-zinc-900
-        border
-        border-zinc-800
-        rounded-3xl
-        p-6
-      "
+    <WidgetContainer
+      title="Role Distribution"
+      category="Team Strategy"
+      accent="cyan"
     >
-      <header className="mb-6">
-
-        <p
-          className="
-            uppercase
-            tracking-[0.3em]
-            text-cyan-400
-            text-sm
-            mb-2
-          "
-        >
-          Team Strategy
-        </p>
-
-        <h2
-          className="
-            text-3xl
-            font-black
-          "
-        >
-          Role Distribution
-        </h2>
-
-      </header>
 
       <div className="space-y-4">
 
@@ -110,12 +85,13 @@ export default function TeamRolePanel() {
               >
                 {count}
               </span>
+
             </div>
           )
         )}
 
       </div>
 
-    </section>
+    </WidgetContainer>
   )
 }

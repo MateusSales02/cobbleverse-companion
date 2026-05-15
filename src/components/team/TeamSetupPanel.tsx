@@ -9,6 +9,9 @@ import {
   analyzeSetupRoles,
 } from "../../utils/team-setup-analysis"
 
+import WidgetContainer
+  from "../ui/WidgetContainer"
+
 export default function TeamSetupPanel() {
   const {
     teams,
@@ -40,39 +43,11 @@ export default function TeamSetupPanel() {
     Object.entries(setupRoles)
 
   return (
-    <section
-      className="
-        bg-zinc-900
-        border
-        border-zinc-800
-        rounded-3xl
-        p-6
-      "
+    <WidgetContainer
+      title="Setup Analysis"
+      category="Win Condition"
+      accent="blue"
     >
-      <header className="mb-6">
-
-        <p
-          className="
-            uppercase
-            tracking-[0.3em]
-            text-blue-400
-            text-sm
-            mb-2
-          "
-        >
-          Win Condition
-        </p>
-
-        <h2
-          className="
-            text-3xl
-            font-black
-          "
-        >
-          Setup Analysis
-        </h2>
-
-      </header>
 
       <div className="space-y-4">
 
@@ -110,12 +85,13 @@ export default function TeamSetupPanel() {
               >
                 {count}
               </span>
+
             </div>
           )
         )}
 
       </div>
 
-    </section>
+    </WidgetContainer>
   )
 }

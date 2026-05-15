@@ -12,6 +12,9 @@ import {
 import TypeBadge
   from "../ui/TypeBadge"
 
+import WidgetContainer
+  from "../ui/WidgetContainer"
+
 export default function TeamWeatherPanel() {
   const {
     teams,
@@ -43,39 +46,11 @@ export default function TeamWeatherPanel() {
     Object.entries(weather)
 
   return (
-    <section
-      className="
-        bg-zinc-900
-        border
-        border-zinc-800
-        rounded-3xl
-        p-6
-      "
+    <WidgetContainer
+      title="Weather Synergy"
+      category="Weather Analysis"
+      accent="orange"
     >
-      <header className="mb-6">
-
-        <p
-          className="
-            uppercase
-            tracking-[0.3em]
-            text-yellow-400
-            text-sm
-            mb-2
-          "
-        >
-          Weather Analysis
-        </p>
-
-        <h2
-          className="
-            text-3xl
-            font-black
-          "
-        >
-          Weather Synergy
-        </h2>
-
-      </header>
 
       <div className="space-y-4">
 
@@ -112,12 +87,13 @@ export default function TeamWeatherPanel() {
               >
                 {count}
               </span>
+
             </div>
           )
         )}
 
       </div>
 
-    </section>
+    </WidgetContainer>
   )
 }

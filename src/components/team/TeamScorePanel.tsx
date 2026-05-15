@@ -9,6 +9,9 @@ import {
   calculateTeamScore,
 } from "../../utils/team-score"
 
+import WidgetContainer
+  from "../ui/WidgetContainer"
+
 export default function TeamScorePanel() {
   const {
     teams,
@@ -37,39 +40,11 @@ export default function TeamScorePanel() {
     )
 
   return (
-    <section
-      className="
-        bg-zinc-900
-        border
-        border-zinc-800
-        rounded-3xl
-        p-6
-      "
+    <WidgetContainer
+      title="Team Score"
+      category="Competitive Rating"
+      accent="cyan"
     >
-      <header className="mb-6">
-
-        <p
-          className="
-            uppercase
-            tracking-[0.3em]
-            text-cyan-400
-            text-sm
-            mb-2
-          "
-        >
-          Competitive Rating
-        </p>
-
-        <h2
-          className="
-            text-3xl
-            font-black
-          "
-        >
-          Team Score
-        </h2>
-
-      </header>
 
       <div
         className="
@@ -108,6 +83,6 @@ export default function TeamScorePanel() {
 
       </div>
 
-    </section>
+    </WidgetContainer>
   )
 }

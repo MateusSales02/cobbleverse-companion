@@ -135,9 +135,12 @@ export default function TeamCard() {
           <div className="space-y-4">
 
             {teamMembers.map(
-              (pokemon) => (
+              (
+                pokemon,
+                index
+              ) => (
                 <div
-                  key={pokemon.id}
+                  key={`${pokemon.id}-${index}`}
                   className="
                     w-full
                     max-w-[680px]

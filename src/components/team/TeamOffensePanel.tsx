@@ -12,6 +12,9 @@ import {
 import TypeBadge
   from "../ui/TypeBadge"
 
+import WidgetContainer
+  from "../ui/WidgetContainer"
+
 export default function TeamOffensePanel() {
   const {
     teams,
@@ -45,39 +48,11 @@ export default function TeamOffensePanel() {
     )
 
   return (
-    <section
-      className="
-        bg-zinc-900
-        border
-        border-zinc-800
-        rounded-3xl
-        p-6
-      "
+    <WidgetContainer
+      title="Type Coverage"
+      category="Offensive Analysis"
+      accent="orange"
     >
-      <header className="mb-6">
-
-        <p
-          className="
-            uppercase
-            tracking-[0.3em]
-            text-orange-400
-            text-sm
-            mb-2
-          "
-        >
-          Offensive Analysis
-        </p>
-
-        <h2
-          className="
-            text-3xl
-            font-black
-          "
-        >
-          Type Coverage
-        </h2>
-
-      </header>
 
       <div
         className="
@@ -127,6 +102,6 @@ export default function TeamOffensePanel() {
 
       </div>
 
-    </section>
+    </WidgetContainer>
   )
 }

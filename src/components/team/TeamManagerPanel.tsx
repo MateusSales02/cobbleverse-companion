@@ -1,10 +1,29 @@
+import { useState }
+  from "react"
+
+import { SlidersHorizontal }
+  from "lucide-react"
+
 import { useTeamStore }
   from "../../store/team-store"
 
 import type { Team }
   from "../../types/team"
 
-export default function TeamManagerPanel() {
+import DashboardCustomizer
+  from "./DashboardCustomizer"
+
+type Props = {
+  hiddenWidgets: string[]
+
+  toggleWidget:
+    (id: string) => void
+}
+
+export default function TeamManagerPanel({
+  hiddenWidgets,
+  toggleWidget,
+}: Props) {
   const {
     teams,
     activeTeamId,
@@ -14,6 +33,11 @@ export default function TeamManagerPanel() {
     renameTeam,
     changeStrategy,
   } = useTeamStore()
+
+  const [
+    isCustomizerOpen,
+    setIsCustomizerOpen,
+  ] = useState(false)
 
   const activeTeam =
     teams.find(
@@ -29,6 +53,7 @@ export default function TeamManagerPanel() {
   return (
     <section
       className="
+        relative
         bg-zinc-900
         border
         border-zinc-800
@@ -156,6 +181,32 @@ export default function TeamManagerPanel() {
         >
 
           <button
+            onClick={() =>
+              setIsCustomizerOpen(
+                !isCustomizerOpen
+              )
+            }
+            className="
+              h-[50px]
+              w-[50px]
+              rounded-2xl
+              bg-zinc-950
+              border
+              border-zinc-800
+              hover:border-cyan-500
+              hover:text-cyan-400
+              transition-all
+              flex
+              items-center
+              justify-center
+            "
+          >
+            <SlidersHorizontal
+              size={18}
+            />
+          </button>
+
+          <button
             onClick={createTeam}
             className="
               h-[50px]
@@ -254,6 +305,34 @@ export default function TeamManagerPanel() {
               </button>
             )
           })}
+
+        </div>
+
+      )}
+
+      {isCustomizerOpen && (
+
+        <div
+          className="
+            absolute
+            top-[95px]
+            right-5
+            z-50
+            w-[340px]
+            animate-in
+            fade-in
+            slide-in-from-top-2
+          "
+        >
+
+          <DashboardCustomizer
+            hiddenWidgets={
+              hiddenWidgets
+            }
+            toggleWidget={
+              toggleWidget
+            }
+          />
 
         </div>
 

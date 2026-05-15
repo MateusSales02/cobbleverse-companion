@@ -1,3 +1,6 @@
+import { useState }
+  from "react"
+
 import TeamManagerPanel
   from "../components/team/TeamManagerPanel"
 
@@ -13,6 +16,28 @@ import {
 } from "../config/team-widgets"
 
 export default function TeamBuilderPage() {
+  const [
+    hiddenWidgets,
+    setHiddenWidgets,
+  ] = useState<string[]>([])
+
+  function toggleWidget(
+    id: string
+  ) {
+    setHiddenWidgets(
+      (current) =>
+        current.includes(id)
+          ? current.filter(
+              (widgetId) =>
+                widgetId !== id
+            )
+          : [
+              ...current,
+              id,
+            ]
+    )
+  }
+
   return (
     <div
       className="
@@ -26,7 +51,14 @@ export default function TeamBuilderPage() {
 
       <div className="space-y-8">
 
-        <TeamManagerPanel />
+        <TeamManagerPanel
+          hiddenWidgets={
+            hiddenWidgets
+          }
+          toggleWidget={
+            toggleWidget
+          }
+        />
 
         <TeamCard />
 
@@ -34,35 +66,49 @@ export default function TeamBuilderPage() {
 
       <div className="space-y-8">
 
-        {leftWidgets.map(
-          (widget) => {
-            const Component =
-              widget.component
+        {leftWidgets
+          .filter(
+            (widget) =>
+              !hiddenWidgets.includes(
+                widget.id
+              )
+          )
+          .map(
+            (widget) => {
+              const Component =
+                widget.component
 
-            return (
-              <Component
-                key={widget.id}
-              />
-            )
-          }
-        )}
+              return (
+                <Component
+                  key={widget.id}
+                />
+              )
+            }
+          )}
 
       </div>
 
       <div className="space-y-8">
 
-        {rightWidgets.map(
-          (widget) => {
-            const Component =
-              widget.component
+        {rightWidgets
+          .filter(
+            (widget) =>
+              !hiddenWidgets.includes(
+                widget.id
+              )
+          )
+          .map(
+            (widget) => {
+              const Component =
+                widget.component
 
-            return (
-              <Component
-                key={widget.id}
-              />
-            )
-          }
-        )}
+              return (
+                <Component
+                  key={widget.id}
+                />
+              )
+            }
+          )}
 
         <PokemonPoolPanel />
 

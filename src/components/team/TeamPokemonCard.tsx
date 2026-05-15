@@ -56,8 +56,6 @@ export default function TeamPokemonCard({
     <div
       ref={setNodeRef}
       style={style}
-      {...attributes}
-      {...listeners}
       className="
         bg-zinc-900
         border
@@ -73,10 +71,35 @@ export default function TeamPokemonCard({
         flex
         items-center
         gap-4
-        cursor-grab
-        active:cursor-grabbing
       "
     >
+
+      <button
+        {...attributes}
+        {...listeners}
+        className="
+          self-stretch
+          px-3
+          rounded-2xl
+          bg-zinc-950
+          border
+          border-zinc-800
+          text-zinc-500
+          hover:text-cyan-400
+          hover:border-cyan-500
+          transition-all
+          cursor-grab
+          active:cursor-grabbing
+          flex
+          items-center
+          justify-center
+          text-xl
+          font-black
+          shrink-0
+        "
+      >
+        ⋮⋮
+      </button>
 
       <img
         src={species.image}

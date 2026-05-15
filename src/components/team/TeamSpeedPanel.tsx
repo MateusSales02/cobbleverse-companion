@@ -9,6 +9,9 @@ import {
   analyzeSpeedControl,
 } from "../../utils/team-speed-analysis"
 
+import WidgetContainer
+  from "../ui/WidgetContainer"
+
 export default function TeamSpeedPanel() {
   const {
     teams,
@@ -40,39 +43,11 @@ export default function TeamSpeedPanel() {
     Object.entries(speedControl)
 
   return (
-    <section
-      className="
-        bg-zinc-900
-        border
-        border-zinc-800
-        rounded-3xl
-        p-6
-      "
+    <WidgetContainer
+      title="Speed Control"
+      category="Speed Analysis"
+      accent="emerald"
     >
-      <header className="mb-6">
-
-        <p
-          className="
-            uppercase
-            tracking-[0.3em]
-            text-green-400
-            text-sm
-            mb-2
-          "
-        >
-          Speed Analysis
-        </p>
-
-        <h2
-          className="
-            text-3xl
-            font-black
-          "
-        >
-          Speed Control
-        </h2>
-
-      </header>
 
       <div className="space-y-4">
 
@@ -110,12 +85,13 @@ export default function TeamSpeedPanel() {
               >
                 {count}
               </span>
+
             </div>
           )
         )}
 
       </div>
 
-    </section>
+    </WidgetContainer>
   )
 }

@@ -12,6 +12,9 @@ import {
 import TypeBadge
   from "../ui/TypeBadge"
 
+import WidgetContainer
+  from "../ui/WidgetContainer"
+
 export default function TeamTeraPanel() {
   const {
     teams,
@@ -43,39 +46,11 @@ export default function TeamTeraPanel() {
     Object.entries(teraTypes)
 
   return (
-    <section
-      className="
-        bg-zinc-900
-        border
-        border-zinc-800
-        rounded-3xl
-        p-6
-      "
+    <WidgetContainer
+      title="Tera Distribution"
+      category="Tera Analysis"
+      accent="purple"
     >
-      <header className="mb-6">
-
-        <p
-          className="
-            uppercase
-            tracking-[0.3em]
-            text-purple-400
-            text-sm
-            mb-2
-          "
-        >
-          Tera Analysis
-        </p>
-
-        <h2
-          className="
-            text-3xl
-            font-black
-          "
-        >
-          Tera Distribution
-        </h2>
-
-      </header>
 
       <div className="space-y-4">
 
@@ -112,12 +87,13 @@ export default function TeamTeraPanel() {
               >
                 {count}
               </span>
+
             </div>
           )
         )}
 
       </div>
 
-    </section>
+    </WidgetContainer>
   )
 }
