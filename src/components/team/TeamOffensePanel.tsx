@@ -9,6 +9,9 @@ import {
   analyzeOffensiveCoverage,
 } from "../../utils/team-offense-analysis"
 
+import TypeBadge
+  from "../ui/TypeBadge"
+
 export default function TeamOffensePanel() {
   const {
     teams,
@@ -76,7 +79,13 @@ export default function TeamOffensePanel() {
 
       </header>
 
-      <div className="space-y-4">
+      <div
+        className="
+          grid
+          grid-cols-2
+          gap-4
+        "
+      >
 
         {sortedCoverage.map(
           ([type, count]) => (
@@ -90,28 +99,28 @@ export default function TeamOffensePanel() {
                 border
                 border-zinc-800
                 rounded-2xl
-                px-5
-                py-4
+                px-4
+                py-3
               "
             >
-              <span
-                className="
-                  text-lg
-                  font-semibold
-                "
-              >
-                {type}
-              </span>
+              <TypeBadge
+                type={
+                  type as keyof typeof import(
+                    "../../constants/type-colors"
+                  ).typeColors
+                }
+              />
 
               <span
                 className="
                   text-orange-400
                   font-bold
-                  text-xl
+                  text-base
                 "
               >
                 {count}
               </span>
+
             </div>
           )
         )}

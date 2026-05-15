@@ -132,45 +132,60 @@ export default function TeamCard() {
           }
         >
 
-          <div className="space-y-5">
+          <div className="space-y-4">
 
             {teamMembers.map(
               (pokemon) => (
                 <div
                   key={pokemon.id}
                   className="
-                    flex
-                    items-center
-                    gap-4
+                    w-full
+                    max-w-[680px]
                   "
                 >
 
-                  <div className="flex-1">
+                  <div
+                    className="
+                      relative
+                      w-full
+                    "
+                  >
 
                     <TeamPokemonCard
                       pokemon={pokemon}
                     />
 
-                  </div>
+                    <button
+                      onClick={() =>
+                        removePokemon(
+                          pokemon.id
+                        )
+                      }
+                      className="
+                        absolute
+                        top-3
+                        right-3
+                        w-9
+                        h-9
+                        rounded-xl
+                        bg-red-500/10
+                        border
+                        border-red-500/20
+                        text-red-400
+                        hover:bg-red-500
+                        hover:text-white
+                        transition-all
+                        flex
+                        items-center
+                        justify-center
+                        text-sm
+                        font-black
+                      "
+                    >
+                      ×
+                    </button>
 
-                  <button
-                    onClick={() =>
-                      removePokemon(
-                        pokemon.id
-                      )
-                    }
-                    className="
-                      bg-red-500
-                      hover:bg-red-400
-                      transition-all
-                      px-4
-                      py-3
-                      rounded-2xl
-                      font-bold
-                    "
-                  >
-                    Remove
-                  </button>
+                  </div>
 
                 </div>
               )

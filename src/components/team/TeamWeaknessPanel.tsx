@@ -9,6 +9,9 @@ import {
   analyzeWeaknesses,
 } from "../../utils/team-analysis"
 
+import TypeBadge
+  from "../ui/TypeBadge"
+
 export default function TeamWeaknessPanel() {
   const {
     teams,
@@ -75,7 +78,13 @@ export default function TeamWeaknessPanel() {
 
       </header>
 
-      <div className="space-y-4">
+      <div
+        className="
+          grid
+          grid-cols-2
+          gap-4
+        "
+      >
 
         {sortedWeaknesses.map(
           ([type, count]) => (
@@ -89,28 +98,28 @@ export default function TeamWeaknessPanel() {
                 border
                 border-zinc-800
                 rounded-2xl
-                px-5
-                py-4
+                px-4
+                py-3
               "
             >
-              <span
-                className="
-                  text-lg
-                  font-semibold
-                "
-              >
-                {type}
-              </span>
+              <TypeBadge
+                type={
+                  type as keyof typeof import(
+                    "../../constants/type-colors"
+                  ).typeColors
+                }
+              />
 
               <span
                 className="
                   text-red-400
                   font-bold
-                  text-xl
+                  text-base
                 "
               >
                 {count}x
               </span>
+
             </div>
           )
         )}

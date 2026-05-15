@@ -4,49 +4,23 @@ import TeamManagerPanel
 import TeamCard
   from "../components/team/TeamCard"
 
-import TeamWeaknessPanel
-  from "../components/team/TeamWeaknessPanel"
-
-import TeamRolePanel
-  from "../components/team/TeamRolePanel"
-
-import TeamOffensePanel
-  from "../components/team/TeamOffensePanel"
-
-import TeamWeatherPanel
-  from "../components/team/TeamWeatherPanel"
-
-import TeamTeraPanel
-  from "../components/team/TeamTeraPanel"
-
-import TeamSpeedPanel
-  from "../components/team/TeamSpeedPanel"
-
-import TeamHazardPanel
-  from "../components/team/TeamHazardPanel"
-
-import TeamSetupPanel
-  from "../components/team/TeamSetupPanel"
-
-import TeamArchetypePanel
-  from "../components/team/TeamArchetypePanel"
-
-import TeamRecommendationPanel
-  from "../components/team/TeamRecommendationPanel"
-
-import TeamScorePanel
-  from "../components/team/TeamScorePanel"
-
 import PokemonPoolPanel
   from "../components/team/PokemonPoolPanel"
+
+import {
+  leftWidgets,
+  rightWidgets,
+} from "../config/team-widgets"
 
 export default function TeamBuilderPage() {
   return (
     <div
       className="
         grid
-        grid-cols-[2fr_1fr_1fr]
+        xl:grid-cols-[1.5fr_1fr]
+        2xl:grid-cols-[1.7fr_1fr_1fr]
         gap-8
+        items-start
       "
     >
 
@@ -60,31 +34,35 @@ export default function TeamBuilderPage() {
 
       <div className="space-y-8">
 
-        <TeamWeaknessPanel />
+        {leftWidgets.map(
+          (widget) => {
+            const Component =
+              widget.component
 
-        <TeamRolePanel />
-
-        <TeamOffensePanel />
-
-        <TeamWeatherPanel />
-
-        <TeamTeraPanel />
-
-        <TeamSpeedPanel />
-
-        <TeamHazardPanel />
-
-        <TeamSetupPanel />
-
-        <TeamArchetypePanel />
-
-        <TeamRecommendationPanel />
-
-        <TeamScorePanel />
+            return (
+              <Component
+                key={widget.id}
+              />
+            )
+          }
+        )}
 
       </div>
 
       <div className="space-y-8">
+
+        {rightWidgets.map(
+          (widget) => {
+            const Component =
+              widget.component
+
+            return (
+              <Component
+                key={widget.id}
+              />
+            )
+          }
+        )}
 
         <PokemonPoolPanel />
 

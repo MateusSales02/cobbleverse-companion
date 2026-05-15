@@ -62,11 +62,17 @@ export default function TeamPokemonCard({
         bg-zinc-900
         border
         border-zinc-800
+        hover:border-cyan-400/40
+        hover:shadow-cyan-500/10
+        hover:shadow-2xl
+        hover:-translate-y-1
+        transition-all
+        duration-300
         rounded-3xl
-        p-5
+        p-4
         flex
         items-center
-        gap-5
+        gap-4
         cursor-grab
         active:cursor-grabbing
       "
@@ -76,8 +82,8 @@ export default function TeamPokemonCard({
         src={species.image}
         alt={species.name}
         className="
-          w-28
-          h-28
+          w-20
+          h-20
           rounded-2xl
           object-cover
         "
@@ -87,7 +93,7 @@ export default function TeamPokemonCard({
 
         <h2
           className="
-            text-3xl
+            text-2xl
             font-black
             mb-2
           "
@@ -99,30 +105,31 @@ export default function TeamPokemonCard({
         <p className="text-zinc-500">
           Lv. {pokemon.level}
         </p>
+
         <div
-        className="
+          className="
             flex
             gap-2
-            mt-3
-        "
+            mt-2
+          "
         >
 
-        {species.types.map(
+          {species.types.map(
             (type) => (
-            <TypeBadge
+              <TypeBadge
                 key={type}
                 type={
-                    type as keyof typeof import(
-                        "../../constants/type-colors"
-                ).typeColors
+                  type as keyof typeof import(
+                    "../../constants/type-colors"
+                  ).typeColors
                 }
-            />
+              />
             )
-        )}
+          )}
 
         </div>
 
-        <div className="mt-4 flex gap-2 flex-wrap">
+        <div className="mt-3 flex gap-2 flex-wrap">
 
           {pokemon.moves.map(
             (move) => (
@@ -132,7 +139,7 @@ export default function TeamPokemonCard({
                   bg-cyan-500/10
                   border
                   border-cyan-500/20
-                  px-3
+                  px-2
                   py-1
                   rounded-xl
                   text-sm

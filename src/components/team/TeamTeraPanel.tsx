@@ -9,6 +9,9 @@ import {
   analyzeTeraTypes,
 } from "../../utils/team-tera-analysis"
 
+import TypeBadge
+  from "../ui/TypeBadge"
+
 export default function TeamTeraPanel() {
   const {
     teams,
@@ -92,14 +95,13 @@ export default function TeamTeraPanel() {
                 py-4
               "
             >
-              <span
-                className="
-                  text-lg
-                  font-semibold
-                "
-              >
-                {tera}
-              </span>
+              <TypeBadge
+                type={
+                  tera as keyof typeof import(
+                    "../../constants/type-colors"
+                  ).typeColors
+                }
+              />
 
               <span
                 className="

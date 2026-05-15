@@ -9,6 +9,9 @@ import {
   analyzeWeatherSynergy,
 } from "../../utils/team-weather-analysis"
 
+import TypeBadge
+  from "../ui/TypeBadge"
+
 export default function TeamWeatherPanel() {
   const {
     teams,
@@ -92,14 +95,13 @@ export default function TeamWeatherPanel() {
                 py-4
               "
             >
-              <span
-                className="
-                  text-lg
-                  font-semibold
-                "
-              >
-                {weather}
-              </span>
+              <TypeBadge
+                type={
+                  weather as keyof typeof import(
+                    "../../constants/type-colors"
+                  ).typeColors
+                }
+              />
 
               <span
                 className="
