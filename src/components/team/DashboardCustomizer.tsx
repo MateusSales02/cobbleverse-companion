@@ -1,6 +1,5 @@
 import {
-  leftWidgets,
-  rightWidgets,
+  widgetRegistry,
 } from "../../config/team-widgets"
 
 type Props = {
@@ -10,14 +9,53 @@ type Props = {
     (id: string) => void
 }
 
+const widgetTitles:
+  Record<string, string> = {
+    weakness:
+      "Weakness Coverage",
+
+    offense:
+      "Type Coverage",
+
+    weather:
+      "Weather Synergy",
+
+    tera:
+      "Tera Distribution",
+
+    roles:
+      "Role Distribution",
+
+    speed:
+      "Speed Control",
+
+    hazards:
+      "Hazard Control",
+
+    setup:
+      "Setup Analysis",
+
+    archetype:
+      "Archetype",
+
+    score:
+      "Team Score",
+
+    radar:
+      "Team Radar",
+
+    recommendations:
+      "Recommendations",
+  }
+
 export default function DashboardCustomizer({
   hiddenWidgets,
   toggleWidget,
 }: Props) {
-  const widgets = [
-    ...leftWidgets,
-    ...rightWidgets,
-  ]
+  const widgets =
+    Object.keys(
+      widgetRegistry
+    )
 
   return (
     <section
@@ -58,18 +96,18 @@ export default function DashboardCustomizer({
       <div className="space-y-3">
 
         {widgets.map(
-          (widget) => {
+          (widgetId) => {
             const hidden =
               hiddenWidgets.includes(
-                widget.id
+                widgetId
               )
 
             return (
               <button
-                key={widget.id}
+                key={widgetId}
                 onClick={() =>
                   toggleWidget(
-                    widget.id
+                    widgetId
                   )
                 }
                 className="
@@ -93,7 +131,11 @@ export default function DashboardCustomizer({
                     font-semibold
                   "
                 >
-                  {widget.title}
+                  {
+                    widgetTitles[
+                      widgetId
+                    ]
+                  }
                 </span>
 
                 <span

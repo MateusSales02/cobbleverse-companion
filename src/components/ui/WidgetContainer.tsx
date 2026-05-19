@@ -5,10 +5,21 @@ import {
 
 type Props = {
   title: string
+
   category: string
+
   accent?: string
-  children: ReactNode
-  defaultCollapsed?: boolean
+
+  children:
+    ReactNode
+
+  defaultCollapsed?:
+    boolean
+
+  dragHandleProps?: {
+    attributes?: object
+    listeners?: object
+  }
 }
 
 export default function WidgetContainer({
@@ -17,6 +28,7 @@ export default function WidgetContainer({
   accent = "cyan",
   children,
   defaultCollapsed = false,
+  dragHandleProps,
 }: Props) {
   const [
     collapsed,
@@ -56,23 +68,27 @@ export default function WidgetContainer({
       "
     >
 
-      <button
-        onClick={() =>
-          setCollapsed(
-            !collapsed
-          )
-        }
+      <div
         className="
-          w-full
           flex
           items-start
           justify-between
-          text-left
+          gap-4
           mb-6
         "
       >
 
-        <div>
+        <button
+          onClick={() =>
+            setCollapsed(
+              !collapsed
+            )
+          }
+          className="
+            flex-1
+            text-left
+          "
+        >
 
           <p
             className={`
@@ -80,9 +96,11 @@ export default function WidgetContainer({
               tracking-[0.3em]
               text-sm
               mb-2
-              ${accentStyles[
-                accent as keyof typeof accentStyles
-              ]}
+              ${
+                accentStyles[
+                  accent as keyof typeof accentStyles
+                ]
+              }
             `}
           >
             {category}
@@ -97,21 +115,53 @@ export default function WidgetContainer({
             {title}
           </h2>
 
-        </div>
+        </button>
 
-        <span
+        <div
           className="
-            text-zinc-500
-            text-xl
-            transition-transform
+            flex
+            items-center
+            gap-3
           "
         >
-          {collapsed
-            ? "▶"
-            : "▼"}
-        </span>
 
-      </button>
+          <button
+            onClick={() =>
+              setCollapsed(
+                !collapsed
+              )
+            }
+            className="
+              text-zinc-500
+              hover:text-white
+              transition-all
+              text-xl
+            "
+          >
+            {collapsed
+              ? "▶"
+              : "▼"}
+          </button>
+
+          <div
+            {...dragHandleProps?.attributes}
+            {...dragHandleProps?.listeners}
+            className="
+              cursor-grab
+              active:cursor-grabbing
+              text-zinc-500
+              hover:text-cyan-400
+              transition-all
+              text-xl
+              select-none
+            "
+          >
+            ⋮⋮
+          </div>
+
+        </div>
+
+      </div>
 
       {!collapsed && (
         <div>

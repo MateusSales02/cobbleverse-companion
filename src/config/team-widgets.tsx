@@ -34,150 +34,84 @@ import TeamRadarChart
 import TeamRecommendationPanel
   from "../components/team/TeamRecommendationPanel"
 
-export const leftWidgets = [
-  {
-    id: "weakness",
-
-    title:
-      "Weakness Coverage",
-
+export const widgetRegistry = {
+  weakness: {
     component:
       TeamWeaknessPanel,
-
-    visible: true,
   },
 
-  {
-    id: "offense",
-
-    title:
-      "Type Coverage",
-
+  offense: {
     component:
       TeamOffensePanel,
-
-    visible: true,
   },
 
-  {
-    id: "weather",
-
-    title:
-      "Weather Synergy",
-
+  weather: {
     component:
       TeamWeatherPanel,
-
-    visible: true,
   },
 
-  {
-    id: "tera",
-
-    title:
-      "Tera Distribution",
-
+  tera: {
     component:
       TeamTeraPanel,
-
-    visible: true,
   },
-]
 
-export const rightWidgets = [
-  {
-    id: "roles",
-
-    title:
-      "Role Distribution",
-
+  roles: {
     component:
       TeamRolePanel,
-
-    visible: true,
   },
 
-  {
-    id: "speed",
-
-    title:
-      "Speed Control",
-
+  speed: {
     component:
       TeamSpeedPanel,
-
-    visible: true,
   },
 
-  {
-    id: "hazards",
-
-    title:
-      "Hazard Control",
-
+  hazards: {
     component:
       TeamHazardPanel,
-
-    visible: true,
   },
 
-  {
-    id: "setup",
-
-    title:
-      "Setup Analysis",
-
+  setup: {
     component:
       TeamSetupPanel,
-
-    visible: true,
   },
 
-  {
-    id: "archetype",
-
-    title:
-      "Archetype",
-
+  archetype: {
     component:
       TeamArchetypePanel,
-
-    visible: true,
   },
 
-  {
-    id: "score",
-
-    title:
-      "Team Score",
-
+  score: {
     component:
       TeamScorePanel,
-
-    visible: true,
   },
 
-  {
-    id: "radar",
-
-    title:
-      "Team Radar",
-
+  radar: {
     component:
       TeamRadarChart,
-
-    visible: true,
   },
 
-  {
-    id: "recommendations",
-
-    title:
-      "Recommendations",
-
+  recommendations: {
     component:
       TeamRecommendationPanel,
-
-    visible: true,
   },
-]
+}
+
+export const defaultColumns = {
+  left: [
+    "weakness",
+    "offense",
+    "weather",
+    "tera",
+  ],
+
+  right: [
+    "roles",
+    "speed",
+    "hazards",
+    "setup",
+    "archetype",
+    "score",
+    "radar",
+    "recommendations",
+  ],
+}
